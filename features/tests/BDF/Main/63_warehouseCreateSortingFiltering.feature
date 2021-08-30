@@ -1,0 +1,91 @@
+@MainBDF
+@dictionaries
+@Warehouse
+@d1
+Feature: Create, sort, filter warehouse
+    create new warehouse, sort and filter fields  
+
+    Scenario: Create warehouses
+        Given I log in as a user Administrator on homepage 
+        When  I click on this element "dictionaries"
+        And   I click on this element "dictionary_warehouses"
+        When  I click on this element "dictionary_create_button"
+        And   I add "dictionary_warehouse_name_value1" to the inputfields "dictionary_field_warehouse_name"
+        And   I add "dictionary_warehouse_soldto_value" to the inputfields "dictionary_field_warehouse_soldto"
+        And   I add "dictionary_warehouse_adress_value1" to the inputfields "dictionary_field_warehouse_address"
+        And   I click on this element "warehouse_delivery_method_input"
+        And   I click on this element "warehouse_delivery_method_value_delivery"
+        And   I click on this element "button_save"
+        When  I click on this element "dictionary_create_button"
+        And   I add "dictionary_warehouse_name_value2" to the inputfields "dictionary_field_warehouse_name"
+        And   I add "dictionary_warehouse_soldto_value2" to the inputfields "dictionary_field_warehouse_soldto"
+        And   I add "dictionary_warehouse_adress_value2" to the inputfields "dictionary_field_warehouse_address"
+        And   I click on this element "warehouse_delivery_method_input"
+        And   I click on this element "warehouse_delivery_method_value_courier"
+        And   I click on this element "button_save"
+        When  I click on this element "dictionary_create_button"
+        And   I add "dictionary_warehouse_name_value3" to the inputfields "dictionary_field_warehouse_name"
+        And   I add "dictionary_warehouse_soldto_value3" to the inputfields "dictionary_field_warehouse_soldto"
+        And   I add "dictionary_warehouse_adress_value3" to the inputfields "dictionary_field_warehouse_address"
+        And   I click on this element "warehouse_delivery_method_input"
+        And   I click on this element "warehouse_delivery_method_value_pickup"
+        When  I click on this element "button_save"
+
+    Scenario: Edit warehouses
+        When  I click on this element "dictionary_second_filter"
+        And   I add "dictionary_warehouse_soldto_value" to the inputfields "dictionary_field_warehouse_soldto"
+        And   I click on this element "center_of_dictionary_page"
+        When  I click on this element "warehouse_name_aw99999"
+        And   I add "dictionary_warehouse_soldto_value1" to the inputfields "dictionary_field_warehouse_soldto"
+        And   I click on this button "button_save"
+        And   I click on this button "dictionary_clear_filter"
+
+    Scenario: Sorting warehouses
+        When I click on this element "dictionary_second_filter"
+        And  I add "dictionary_warehouse_sold_so_values_to_filter" to the inputfields "dictionary_field_warehouse_soldto"
+        When I click on this element "dictionary_warehouse_field_client"
+        Then I expects that element "dictionaries_first_line_first_value" contains the text "ТестКлиент2"
+        When I click on this element "dictionary_warehouse_field_client"
+        Then I expects that element "dictionaries_first_line_first_value" contains the text "TestClient3"
+        When I click on this element "dictionary_warehouse_field_client"
+        Then I expects that element "dictionaries_first_line_first_value" contains the text "TestClient3"
+        When I click on this element "dictionary_warehouse_field_soldto"
+        Then I expects that element "dictionaries_first_line_second_value" contains the text "aw999999"
+        When I click on this element "dictionary_warehouse_field_soldto"
+        Then I expects that element "dictionaries_first_line_second_value" contains the text "aw999997"
+        When I click on this element "dictionary_warehouse_field_soldto"
+        Then I expects that element "dictionaries_first_line_second_value" contains the text "aw999999"
+        When I click on this element "dictionary_warehouse_field_address"
+        Then I expects that element "dictionaries_first_line_fifth_value" contains the text "Тестовый адрес2"
+        When I click on this element "dictionary_warehouse_field_address"
+        Then I expects that element "dictionaries_first_line_fifth_value" contains the text "TestAdress3"
+        When I click on this element "dictionary_warehouse_field_address"
+        Then I expects that element "dictionaries_first_line_fifth_value" contains the text "TestAdress3"
+        When I click on this element "dictionary_warehouse_field_delivery_method"
+        Then I expects that element "dictionaries_first_line_ninth_value" contains the text "Курьер"
+        When I click on this element "dictionary_warehouse_field_delivery_method"
+        Then I expects that element "dictionaries_first_line_ninth_value" contains the text "Доставка"
+        When I click on this element "dictionary_warehouse_field_delivery_method"
+        Then I expects that element "dictionaries_first_line_ninth_value" contains the text "Самовывоз"
+
+    Scenario: Filtering warehouses
+        When I click on this element "dictionary_first_filter"
+        And  I add "dictionary_warehouse_name_value1" to the inputfields "dictionary_field_warehouse_name"
+        Then I expects that element "dictionaries_first_line_first_value" contains the text "ТестКлиент1"
+        And  I click on this button "dictionary_clear_filter"
+        When I click on this element "dictionary_second_filter"
+        And  I add "dictionary_warehouse_sold_so_values_to_filter" to the inputfields "dictionary_field_warehouse_soldto"
+        And  I click on this element "center_of_dictionary_page"
+        When I click on this element "dictionary_fifth_filter"
+        And  I add "dictionary_warehouse_adress_value3" to the inputfields "dictionary_field_warehouse_address"
+        Then I expects that element "dictionaries_first_line_fifth_value" contains the text "TestAdress3"
+        And  I click on this button "dictionary_clear_filter"
+        When I click on this element "dictionary_second_filter"
+        And  I add "dictionary_warehouse_sold_so_values_to_filter" to the inputfields "dictionary_field_warehouse_soldto"
+        And  I click on this element "center_of_dictionary_page"
+        When I click on this element "dictionary_ninth_filter"
+        And  I click on this element "warehouse_delivery_method_filter_option_delivery"
+        And  I click on this element "center_of_dictionary_page"
+        Then I expects that element "dictionaries_first_line_ninth_value" contains the text "Доставка"
+
+        
